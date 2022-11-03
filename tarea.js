@@ -7,7 +7,7 @@ const port = 3000
 //armando un saludo (ej: res.send(`Hola ${nombre}`) ).
 
 app.get('/person/:names/:lastname', (req, res) => {
-  res.send(`Hello ${names}`+" "+`${lastname}`)
+  res.send(`Hello ${req.params.names}`+" "+`${req.params.lastname}`)
 }) //http://localhost:3000/person/karen/carboni
 
 
@@ -16,7 +16,7 @@ app.get('/person/:names/:lastname', (req, res) => {
 // un res.json({error: "no se puede dividir por cero"}) si el usuario 
 // ingresa un 0, si no es el caso devolver res.json({resultado}).
 
-app.get('/dividir/:divisor/:dividendo', (req, res) => {
+app.get('/dividir/:dividendo/:divisor', (req, res) => {
     let resultado= req.params.dividendo / req.params.divisor;
 
   if (req.params.divisor==0) {
@@ -52,18 +52,6 @@ app.get('/number', (req, res) => {
   } 
 }) //http://localhost:3000/number?num=3
 
-
-// E)Crear una ruta “lista de compras” (ruta con query) que devuelva un 
-// objeto con 5 productos, se debe usar res.json({objeto}).
-app.get('/list', (req, res) => {
-    res.json({
-        cereales:req.query.cer,
-        yerba:req.query.yer,
-        cerveza:req.query.birra,
-        vino:req.query.vino,
-        cafe:req.query.cafe
-    })
-  })
 
 
 app.listen(port, () => {
